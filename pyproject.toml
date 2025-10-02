@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stocksalmon"
+version = "0.1.0"
+description = "Utilities for ML notebooks (FEN parsing, IO, etc.)"
+requires-python = ">=3.10"
+authors = [{ name = "stocksalmon" }]
+
+[tool.setuptools.packages.find]
+include = ["functions"]
+
