@@ -4,3 +4,9 @@ gdown
 matplotlib
 seaborn
 scipy
+scikit-learn
+numpy
+
+matplotlib
+seaborn
+scipy
