@@ -71,33 +71,28 @@ Nota: el dataset es grande. Para máquinas con recursos limitados, considerar tr
   - `Evaluation_mate_in` (jugadas hasta mate)
 - Se separan mates (p. ej., `#±N`, `M±N`) del continuo en CP.
 
-> Coloca histogramas/boxplots de `Evaluation_cp` y ejemplos de mates
->
-> ![Distribuciones evaluación](docs/figures/eval_distributions.png)
+> ![Distribuciones evaluación](resources/images/analisis_univariado.png)
 
 3) Features desde FEN (categóricas y numéricas)
 - `functions/fen_analyzer.py` aporta utilidades vectorizables:
   - Turno, enroques, en-passant, presencia de damas, paridad de alfiles.
-- `06_correlations.ipynb` añade conteos por pieza, material por lado, diferencia de material, total de piezas, turno, etc.
+> [Ver resultados de categorización de posiciones](notebooks/03_uva.ipynb)
 
-> Coloca aquí diagrama de features extraídas desde FEN
->
-> ![Features FEN](docs/figures/fen_features.png)
+- `06_correlations.ipynb` añade conteos por pieza, material por lado, diferencia de material, total de piezas, turno, etc.
+> ![Features FEN](resources/images/matriz_correlacion.png)
+
+
 
 5) Univariadas categóricas y segmentaciones
 - `03_uva.ipynb` analiza frecuencias/top-K y distribuciones del objetivo por categoría (turno, estado de enroque, damas, EP, …). Boxplots y tablas resumen por categoría.
 
-> Coloca boxplots por turno/enroques y tablas de medias/medianas
->
-> ![Segmentaciones categóricas](docs/figures/categorical_segments.png)
+> [Ver resultados de categorización de posiciones](notebooks/03_uva.ipynb)
 
 6) Outliers de evaluación
 - `05_outliers.ipynb` mapea mates a ±magnitudes y convierte a numérico; aplica IQR, Z-score, umbrales (|eval|>10), e IsolationForest.
 - Resultado ejemplo: filas limpias ≈ 12.77M (−190k), rango aprox. de evaluación ±15k CP.
 
-> Coloca figuras: histograma con límites IQR, KDE, scatter de IF
->
-> ![Outliers evaluación](docs/figures/outliers_eval.png)
+> ![Outliers evaluación](resources/images/outliers.png)
 
 7) Correlaciones y “decisividad” por pieza
 - `06_correlations.ipynb` calcula matriz de correlación y produce rankings.
@@ -109,9 +104,7 @@ Nota: el dataset es grande. Para máquinas con recursos limitados, considerar tr
   - `turn`: 0.019; `black_rooks`: 0.019; `black_bishops`: 0.017
 - “Decisividad”: se definen ventajas por tipo de pieza (diferencias) y se contrasta su relación con la evaluación (correlaciones/boxplots y diferencia de medias ventaja−desventaja).
 
-> Coloca aquí: heatmap de correlación y dispersión `material_difference` vs `evaluation`
->
-> ![Correlaciones](docs/figures/correlations_heat_scatter.png)
+> ![Correlaciones](resources/images/correlations.png)
 
 
 ## Hallazgos clave
@@ -121,10 +114,6 @@ Nota: el dataset es grande. Para máquinas con recursos limitados, considerar tr
 - Fase del juego: menor total de piezas tiende a evaluaciones más extremas (finales “más decisivos”).
 - Mates/outliers: manejar aparte; mapear a ±grandes magnitudes o separar el target para evitar sesgos.
 - Categóricas informativas: enroques, EP, presencia de damas; la paridad de alfiles puede aportar en finales específicos.
-
-> Coloca visual comparativa por fase (total de piezas) y presencia de damas
->
-> ![Fase y damas](docs/figures/phase_queen_presence.png)
 
 
 ## Cómo ejecutar los notebooks
