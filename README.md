@@ -19,6 +19,7 @@ Este repositorio contiene un pipeline de Análisis Exploratorio de Datos (EDA) s
   - `01_structure.ipynb`: inspección estructural (formas, tipos, memoria, nulos, únicos).
   - `02_univariate.ipynb`: parsing de evaluaciones (CP vs mates) y estadística univariada.
   - `03_uva.ipynb`: univariadas categóricas/segmentaciones (turno, enroques, damas, etc.).
+  - `04_missing_values.ipynb`: auditoría de valores faltantes (reales vs ingeniería de features).
   - `05_outliers.ipynb`: detección/visualización de outliers de evaluación.
   - `06_correlations.ipynb`: ingeniería de features desde FEN y correlaciones con evaluación.
 - `pyproject.toml`, `requirements.txt`: metadatos del paquete y dependencias de notebooks.
@@ -76,23 +77,22 @@ Nota: el dataset es grande. Para máquinas con recursos limitados, considerar tr
   - Turno, enroques, en-passant, presencia de damas, paridad de alfiles.
 > [Ver resultados de categorización de posiciones](notebooks/03_uva.ipynb)
 
-- `06_correlations.ipynb` añade conteos por pieza, material por lado, diferencia de material, total de piezas, turno, etc.
-> ![Features FEN](resources/images/matriz_correlacion.png)
 
 
-
-5) Univariadas categóricas y segmentaciones
+4) Univariadas categóricas y segmentaciones
 - `03_uva.ipynb` analiza frecuencias/top-K y distribuciones del objetivo por categoría (turno, estado de enroque, damas, EP, …). Boxplots y tablas resumen por categoría.
 
 > [Ver resultados de categorización de posiciones](notebooks/03_uva.ipynb)
 
-6) Outliers de evaluación
+
+5) Outliers de evaluación
 - `05_outliers.ipynb` mapea mates a ±magnitudes y convierte a numérico; aplica IQR, Z-score, umbrales (|eval|>10), e IsolationForest.
 - Resultado ejemplo: filas limpias ≈ 12.77M (−190k), rango aprox. de evaluación ±15k CP.
 
-> ![Outliers evaluación](resources/images/outliers.png)
+> ![Correlaciones](resources/images/outliers.png)
 
-7) Correlaciones y “decisividad” por pieza
+
+6) Correlaciones desde la evaluacion y como esta afecta al material por lado, diferencia de material, total de piezas, factores decisivos para la victoria según material, cuales piezas aportan más al posible resultado final de la partida.
 - `06_correlations.ipynb` calcula matriz de correlación y produce rankings.
 - Top correlaciones absolutas con `evaluation` (ejemplo observado):
   - `material_difference`: 0.326
@@ -101,6 +101,8 @@ Nota: el dataset es grande. Para máquinas con recursos limitados, considerar tr
   - `white_queens`: 0.025; `white_bishops`: 0.022
   - `turn`: 0.019; `black_rooks`: 0.019; `black_bishops`: 0.017
 - “Decisividad”: se definen ventajas por tipo de pieza (diferencias) y se contrasta su relación con la evaluación (correlaciones/boxplots y diferencia de medias ventaja−desventaja).
+- `06_correlations.ipynb` 
+> ![Features FEN](resources/images/matriz_correlacion.png)
 
 > ![Correlaciones](resources/images/correlations.png)
 
@@ -117,7 +119,7 @@ Nota: el dataset es grande. Para máquinas con recursos limitados, considerar tr
 ## Cómo ejecutar los notebooks
 
 1) Descargar datos con `00_fetch_data.ipynb` (requiere acceso a Drive) o colocar manualmente los CSV en `data/raw/`.
-2) Ejecutar en orden: `01_structure` → `02_univariate` → `03_uva`/`05_outliers` → `06_correlations`.
+2) Ejecutar en orden: `01_structure` → `02_univariate` → `03_uva` → `04_missing_values` → `05_outliers` → `06_correlations`.
 3) En máquinas limitadas, usar `nrows=...` y/o muestreos estratificados (p. ej., por turno o fase del juego).
 
 Sugerencias de rendimiento:
