@@ -31,9 +31,7 @@ Este repositorio contiene un pipeline de Análisis Exploratorio de Datos (EDA) s
 - Memoria aprox.: ~832 MB (medido al cargar con PyArrow)
 - Únicos: `FEN` ~12.95M; `Evaluation` ~13.5k; nulos: 0
 
-> Coloca aquí un ejemplo de primeras filas del dataset (sin datos sensibles)
->
-> ![Head dataset](docs/figures/dataset_head.png)
+> ![Head dataset](resources/images/headers.png)
 
 
 ## Instalación y entorno
