@@ -75,14 +75,14 @@ Nota: el dataset es grande. Para máquinas con recursos limitados, considerar tr
 3) Features desde FEN (categóricas y numéricas)
 - `functions/fen_analyzer.py` aporta utilidades vectorizables:
   - Turno, enroques, en-passant, presencia de damas, paridad de alfiles.
-> [Ver resultados de categorización de posiciones](notebooks/eda/03_uva.ipynb)
+> [Ver resultados de categorización de posiciones](notebooks/eda_03_uva.ipynb)
 
 
 
 4) Univariadas categóricas y segmentaciones
 - `03_uva.ipynb` analiza frecuencias/top-K y distribuciones del objetivo por categoría (turno, estado de enroque, damas, EP, …). Boxplots y tablas resumen por categoría.
 
-> [Ver resultados de categorización de posiciones](notebooks/eda/03_uva.ipynb)
+> [Ver resultados de categorización de posiciones](notebooks/eda_03_uva.ipynb)
 
 
 5) Outliers de evaluación
